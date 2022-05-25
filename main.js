@@ -143,7 +143,7 @@ class MovieApp {
             wishMovieItem.innerHTML = 
             `
             <div class="border-item">
-                <h2 class="fs-4 p-2 d-flex justify-content-start">${movie.title}<span class="ms-auto">⬛</span><span class="mx-1">❌</span></h2>
+                <h2 class="fs-5 p-2 d-flex justify-content-start text-start">${movie.title}<span class="ms-auto">⬛</span><span class="mx-1">❌</span></h2>
             </div>    
             `;
             this.wishList.append(wishMovieItem);
