@@ -1,0 +1,57 @@
+body{
+    margin: 0;
+    background-color: rgb(211, 211, 211);
+}
+
+
+.galery{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2em;
+}
+
+.fluid{
+    max-width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.fluid:hover{
+    transform: scale(1.03);
+}
+.border-item{
+    border-bottom: 1px solid rgb(182, 182, 182);
+}
+
+.plus{
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    color: rgba(156, 156, 156, 0.589);
+    cursor: pointer;
+}
+
+.plus:hover{  
+    color: rgb(90, 90, 90);
+}
+.rank{
+    position: absolute;
+    top: 18px;
+    right: 10px;
+    font-size: 0.9em;
+    color: yellow;
+    padding: 7px;
+    background-color: rgba(0, 0, 0, 0.664);
+    border-radius: 50px;
+    
+}
+
+.formulario{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
