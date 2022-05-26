@@ -15,12 +15,12 @@ class MovieApp {
         
         this.searchForm.addEventListener('submit', (e)=> this.handleSearchSubmit(e));
         this.inputName.focus();
-        this.getMoviesFromLS();  //perfecto
+        this.getMoviesFromLS();
     }
 
 
         getMoviesFromLS(){
-            let moviesFromLS = JSON.parse(localStorage.getItem('wish_movies')); //PERFECTO
+            let moviesFromLS = JSON.parse(localStorage.getItem('wish_movies'));
 
             if(moviesFromLS === null){
                 moviesFromLS = [];
@@ -33,6 +33,10 @@ class MovieApp {
 
             this.printWishMovies();
         
+        }
+
+        setMoviesToLS  (){
+            localStorage.setItem('wish_movies', JSON.stringify(this.wishMovies));
         }
 
         handleSearchSubmit(e){
@@ -127,8 +131,7 @@ class MovieApp {
         const newWishMovie = new WishMovies(id, title);
         this.wishMovies.push(newWishMovie);
 
-        localStorage.setItem('wish_movies', JSON.stringify(this.wishMovies));
-         //PERFECTO!!
+        this.setMoviesToLS  ();
         this.printWishMovies();
 
     }
@@ -141,14 +144,36 @@ class MovieApp {
             const wishMovieItem = document.createElement('article');
             wishMovieItem.classList.add('wish-movie');
             wishMovieItem.innerHTML = 
-            `
-            <div class="border-item">
-                <h2 class="fs-5 p-2 d-flex justify-content-start text-start">${movie.title}<span class="ms-auto">⬛</span><span class="mx-1">❌</span></h2>
-            </div>    
-            `;
+            `<div class="border-item">
+                <h2 class="fs-5 p-2 d-flex justify-content-start text-start">${movie.title}</h2>
+            </div>`
+            const deleteIcon = document.createElement('span');
+            deleteIcon.className = 'mx-1 icoPointer icons ms-auto';
+            deleteIcon.innerHTML = '❌';
+                
+                //<span class="ms-auto">⬛</span>
+          
+            deleteIcon.addEventListener('click', ()=> this.deleteMovie(movie.id));
+
+            wishMovieItem.querySelector('h2').append(deleteIcon);
+
+        
+            
             this.wishList.append(wishMovieItem);
+
+        });
+        
+        }
+    
+
+    deleteMovie(id){
+        this.wishMovies = this.wishMovies.filter( (movie)=> {
+            return id !== movie.id;
         })
-    }
+
+        this.setMoviesToLS  ();
+        this.printWishMovies();
+    };
 
 
 
